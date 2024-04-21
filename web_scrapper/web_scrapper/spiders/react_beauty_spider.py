@@ -20,7 +20,7 @@ class ReactSpider(scrapy.Spider):
             page_title = response.css('h1::text').get()
             filename = f"react-{self.page_count}.json"
 
-            if self.page_count > 300: # limit to 1000 files
+            if self.page_count > 300: # limit to 300 files
                 return
             
             soup = BeautifulSoup(response.body, 'html.parser')
