@@ -73,5 +73,46 @@ We can see the json output in the terminal.
 ## Conclusion
 From the project, we can see that both the APIs are giving relevant documents as the output. But the ranking of the documents is needs improvement. We also observed that the pragrammatic implementation is giving more accurate results close to the reuslts of the search option available on the website. The scikit-learn API is also giving relevant documents for all the queries. But the accuracy is low for some queries. For some other queries, results are same for all three cases.
 ## Test Cases
+### 1) Query: custom hooks
+a) Search option on website:
+<img width="1440" alt="Screenshot 2024-04-20 at 10 31 21 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/9615264c-94e2-4e91-ba50-50f2bcc03f92">
+
+b) Scikit -learn search:
+<img width="1440" alt="Screenshot 2024-04-20 at 10 32 29 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/2d1b3139-04ce-49c2-aa42-281be66c49d6">
+Formatted output
+<img width="1039" alt="Screenshot 2024-04-20 at 10 34 38 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/e587daaf-7e8f-48c4-8aac-df0de8a8cac2">
+
+c) Programmatical tf-idf:
+<img width="1440" alt="Screenshot 2024-04-20 at 10 37 11 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/006122bd-5a8f-4b7d-83fa-cfcbbf6c5234">
+Formatted output:
+<img width="1048" alt="Screenshot 2024-04-20 at 10 38 18 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/cd2f7a8f-1499-418f-9f42-35df57f910e4">
+
+### 2) Query: component logic
+a) Search option on website:
+<img width="1428" alt="Screenshot 2024-04-20 at 10 39 20 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/fedd0a7d-0fb9-4770-99f4-32aa32b97206">
+
+b) Scikit -learn search:
+<img width="1440" alt="Screenshot 2024-04-20 at 10 40 18 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/bff0c79f-8fb3-4a56-a3be-c1a2fdbe5a68">
+Formatted output
+<img width="1057" alt="Screenshot 2024-04-20 at 10 40 46 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/fa68d7b4-76c0-44de-83d0-b972ed3ea444">
+
+c) Programmatical tf-idf:
+<img width="1437" alt="Screenshot 2024-04-20 at 10 41 19 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/5f43da5c-2d66-451e-b439-e710d0aec09d">
+Formatted output:
+<img width="1054" alt="Screenshot 2024-04-20 at 10 41 46 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/02f26481-c918-4f8c-87c3-2b9a49845f42">
+
+### 3) Spelling correction - Query: componet lokic
+a) Search option on website:
+<img width="1428" alt="Screenshot 2024-04-20 at 10 46 35 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/67d9acf5-8fe1-4815-85d5-402587c7d131">
+
+b) Scikit -learn search:
+<img width="1440" alt="Screenshot 2024-04-20 at 10 49 29 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/ef8635f0-12ca-4811-81ad-50fa027e0fc6">
+Formatted output
+<img width="1054" alt="Screenshot 2024-04-20 at 10 50 03 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/bd2b1356-21ce-4543-8cb6-12cbb09a64ec">
+
+c) Programmatical tf-idf:
+<img width="1440" alt="Screenshot 2024-04-20 at 10 48 43 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/7d249fd3-5999-42bd-b211-378873a8ef99">
+Formatted output:
+<img width="1054" alt="Screenshot 2024-04-20 at 10 49 11 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/9b22b82a-a94b-4eec-baa9-e496553d18dd">
 
 
