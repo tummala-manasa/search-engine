@@ -4,7 +4,7 @@
 The project aims to develop a web scraping and search engine system utilizing Scrapy for web scraping and Scikit-learn for implementing TF-IDF scoring. Two approaches are implemented for TF-IDF scoring: one using Scikit-learn and the other using custom code. The system allows users to perform web searches by providing a query through a POST API using Flask. The website already has search functionality. The results of the two methods are compared with the search option on the site.
 
 ## Overview
-As we need to design an search engine and filter the results with TF-IDF scores, intially a web scrapper is built to crawl the website. Then the scrapped data is processed in two different ways. First way is by generating an index with TF-IDF scores and finding the cosine similarity of the given query using the scikit learn library. Second way is by the same process without the library. It's done by programmatically calculating the relevant scores. Two separate APIs are built for both methods to output the top 5 search results in json format. Both the results are compared to the results found through search functionality of the website.
+As we need to design a search engine and filter the results with TF-IDF scores, initially a web scraper is built to crawl the website. Then the scraped data is processed in two different ways. First way is by generating an index with TF-IDF scores and finding the cosine similarity of the given query using the Scikit-learn library. Second way is by the same process without the library. It's done by programmatically calculating the relevant scores. Two separate APIs are built for both methods to output the top 5 search results in json format. Both the results are compared to the results found through search functionality of the website.
 
 ## Design
 1) The web scraper crawls the site and downloads the HTML content and metadata as JSON files for each page.
@@ -13,14 +13,14 @@ As we need to design an search engine and filter the results with TF-IDF scores,
 
 ## Architecture
 There are 3 important steps and 2 modules in this project:
-### 1) Web scrapper:
+### 1) Web scraper:
 a) In this module, a **SPIDER, [react_beauty_spider.py](https://github.com/tummala-manasa/search-engine/blob/main/web_scrapper/web_scrapper/spiders/react_beauty_spider.py)** is written with the name *react_beauty_dev*. Scrappy is used to crawl through *react.dev* by limiting the domain to react.dev and the depth to 2. This is enough to crawl through all the pages on the website. 
 b) Once the pages are crawled, **BeautifulSoup** is used to retrieve the html content on the pages. 
 c) Each page content is written to a json file with id(auto increatement by 1), title(h1 tag), url(web url of the page) and content(all scrapped content) as the keys.
 d) This module gave [156 json files](https://github.com/tummala-manasa/search-engine/blob/main/web_scrapper/react-1.json) as the output. And the files are uploaded to this repository for easy reference.
 ### 2) Search processor:
-**a) [Content processor](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/processor.py)**: In this step the content from the json files is read and processed. First each file is tokenized and punctuations and stop words are removed. For the scikit learn search, the tokenized documents are passed to *TfidfVectorizer* and the transformed index is dumped into a pickle file *tf-idf.pkl*. For the programmatic search, a *term_frequency_index* is created with term as the key and a pair of doc-id and the frequency of that term in that document is added to the value array. This index is used to calculate the tf-idf values for all terms and documents. When we get the query, the queries IDF value is also calculated. Then the cosine similarity of query and documents is calculated. This is done by doing the dot product of the query vector and inverted index. This product is normalised and cosine similarity is calculated. By sorting these calues in ddeceeasing order, we can get the matched documents. Out of which, the top 5 documents are sent in the json format as the output.\
-**b) [Query processor](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/query.py)**: In this step, we use flask to write two POST APIs. The APIs take the query as input and outputs a json response of top 5 results. Both the APIs take the query and do **spelling correction**. They check each word in the the k-gram dictionary and if it is available the same word is used. If not, the edit distance is calculated and the nearest word is automatically used to search. One API searches using the scikit learn tf-idf scoring and the other seraches using the tf-idf scoring done programmatically.\
+**a) [Content processor](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/processor.py)**: In this step the content from the json files is read and processed. First each file is tokenized and punctuations and stop words are removed. For the Scikit-learn search, the tokenized documents are passed to *TfidfVectorizer* and the transformed index is dumped into a pickle file *tf-idf.pkl*. For the programmatic search, a *term_frequency_index* is created with term as the key and a pair of doc-id and the frequency of that term in that document is added to the value array. This index is used to calculate the tf-idf values for all terms and documents. When we get the query, the queries IDF value is also calculated. Then the cosine similarity of query and documents is calculated. This is done by doing the dot product of the query vector and inverted index. This product is normalized and cosine similarity is calculated. By sorting these values in decreasing order, we can get the matched documents. Out of which, the top 5 documents are sent in the json format as the output.\
+**b) [Query processor](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/query.py)**: In this step, we use flask to write two POST APIs. The APIs take the query as input and outputs a json response of top 5 results. Both the APIs take the query and do **spelling correction**. They check each word in the k-gram dictionary and if it is available the same word is used. If not, the edit distance is calculated and the nearest word is automatically used to search. One API searches using the Scikit-learn tf-idf scoring and the other searches using the tf-idf scoring done programmatically.\
 **c) API requests:** For easy testing, two request files are written. In this POST call is made with a default query. Changing the variable and running the python file would make the POST call.
 
 ## Operation
@@ -42,7 +42,7 @@ pip install flask
 pip install requests
 ```
 **c) Web crawling**
-This will crawl through the react.dev website and the output files are avaialble under *web_scrapper(add link)* folder.
+This will crawl through the react.dev website and the output files are available under *web_scrapper(add link)* folder.
 ```
 cd web_scrapper
 scrapy crawl react_beauty_dev
@@ -59,19 +59,19 @@ export FLASK_APP=query
 Flask run
 ```
 **f) Run scikit-learn API**\
-To see the serach results of scikit-learn based algorithm, we need to change the query in the *scikit-request.py* and run it.\
+To see the search results of scikit-learn based algorithm, we need to change the query in the *scikit-request.py* and run it.\
 ```
 python3 scikit-request.py
 ```
 We can see the json output in the terminal.\
 **g) Run manual API**\
-To see the serach results of programmatic algorithm, we need to change the query in the *manual-request.py* and run it.\
+To see the search results of programmatic algorithm, we need to change the query in the *manual-request.py* and run it.\
 ```
 python3 manual-request.py
 ```
 We can see the json output in the terminal.
 ## Conclusion
-From the project, we can see that both the APIs are giving relevant documents as the output. But the ranking of the documents is needs improvement. We also observed that the pragrammatic implementation is giving more accurate results close to the reuslts of the search option available on the website. The scikit-learn API is also giving relevant documents for all the queries. But the accuracy is low for some queries. For some other queries, results are same for all three cases.
+From the project, we can see that both the APIs are giving relevant documents as the output. But the ranking of the documents needs improvement. We also observed that the programmatic implementation is giving more accurate results close to the results of the search option available on the website. The scikit-learn API is also giving relevant documents for all the queries. But the accuracy is low for some queries. For some other queries, results are the same for all three cases.
 ## Test Cases
 ### 1) Query: custom hooks
 a) Search option on website:
@@ -114,5 +114,28 @@ c) Programmatical tf-idf:
 <img width="1440" alt="Screenshot 2024-04-20 at 10 48 43 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/7d249fd3-5999-42bd-b211-378873a8ef99">
 Formatted output:
 <img width="1054" alt="Screenshot 2024-04-20 at 10 49 11 PM" src="https://github.com/tummala-manasa/search-engine/assets/51014362/9b22b82a-a94b-4eec-baa9-e496553d18dd">
+
+## Data Sources
+Scrapy - [version 2.11.1](https://scrapy.org/)\
+Beautiful Soup - [version 4](https://beautiful-soup-4.readthedocs.io/en/latest/#installing-beautiful-soup)\
+Scikit-learn - [version 1.4.2](https://scikit-learn.org/stable/install.html)\
+Flask - [version 3.0.3](https://flask.palletsprojects.com/en/3.0.x/installation/#install-flask)
+
+## Source Code
+Spider file - [react_beauty_spider.py](https://github.com/tummala-manasa/search-engine/blob/main/web_scrapper/web_scrapper/spiders/react_beauty_spider.py)\
+Scrapped pages - [react-{id}](https://github.com/tummala-manasa/search-engine/blob/main/web_scrapper/react-10.json)\
+Processor logic - [processor.py](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/processor.py)\
+Query logic - [query.py](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/query.py)\
+Pickle file - [tf-idf.pkl](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/tf-idf.pkl)\
+Programmatic API - [manual-request.py](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/manual-request.py)\
+Scikit API - [scikit-request.py](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/scikit-request.py)
+
+## Bibliography
+Cloudflare. (n.d.). What is a Web Crawler? Retrieved from https://www.cloudflare.com/learning/bots/what-is-a-web-crawler/
+Web Mining IS688. (2021, Spring). Cosine Similarity and TFIDF. Medium. Retrieved from https://medium.com/web-mining-is688-spring-2021/cosine-similarity-and-tfidf-c2a7079e13fa
+Ravi, J. (2013, October 27). TF-IDF and Cosine Similarity [Blog post]. Retrieved from https://janav.wordpress.com/2013/10/27/tf-idf-and-cosine-similarity/
+Stack Overflow. (n.d.). How vectorizer.fit_transform() work in sklearn? Retrieved from https://stackoverflow.com/questions/47898326/how-vectorizer-fit-transform-work-in-sklearn
+
+
 
 
