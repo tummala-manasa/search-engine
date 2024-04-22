@@ -131,9 +131,9 @@ Programmatic API - [manual-request.py](https://github.com/tummala-manasa/search-
 Scikit API - [scikit-request.py](https://github.com/tummala-manasa/search-engine/blob/main/search-processor/scikit-request.py)
 
 ## Bibliography
-Cloudflare. (n.d.). What is a Web Crawler? Retrieved from https://www.cloudflare.com/learning/bots/what-is-a-web-crawler/
-Web Mining IS688. (2021, Spring). Cosine Similarity and TFIDF. Medium. Retrieved from https://medium.com/web-mining-is688-spring-2021/cosine-similarity-and-tfidf-c2a7079e13fa
-Ravi, J. (2013, October 27). TF-IDF and Cosine Similarity [Blog post]. Retrieved from https://janav.wordpress.com/2013/10/27/tf-idf-and-cosine-similarity/
+Cloudflare. (n.d.). What is a Web Crawler? Retrieved from https://www.cloudflare.com/learning/bots/what-is-a-web-crawler/ \
+Web Mining IS688. (2021, Spring). Cosine Similarity and TFIDF. Medium. Retrieved from https://medium.com/web-mining-is688-spring-2021/cosine-similarity-and-tfidf-c2a7079e13fa \
+Ravi, J. (2013, October 27). TF-IDF and Cosine Similarity [Blog post]. Retrieved from https://janav.wordpress.com/2013/10/27/tf-idf-and-cosine-similarity/ \
 Stack Overflow. (n.d.). How vectorizer.fit_transform() work in sklearn? Retrieved from https://stackoverflow.com/questions/47898326/how-vectorizer-fit-transform-work-in-sklearn
 
 
