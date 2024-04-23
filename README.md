@@ -1,5 +1,8 @@
 # Search Engine for [react](https://react.dev/) website
 
+Author: Lakshmi Manasa Sai Tummala\
+ID: A20548697
+
 ## Abstract
 The project aims to develop a web scraping and search engine system utilizing Scrapy for web scraping and Scikit-learn for implementing TF-IDF scoring. Two approaches are implemented for TF-IDF scoring: one using Scikit-learn and the other using custom code. The system allows users to perform web searches by providing a query through a POST API using Flask. The website already has search functionality. The results of the two methods are compared with the search option on the site.
 
